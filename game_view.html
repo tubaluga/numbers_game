@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>NumbersGame</title>
+    <link href="css/default.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet"> 
+</head>
+<body>
+    <div id="canvasdiv">
+        <div style="text-align: center;">
+            <h1>A simple numbers game</h1>
+        </div>
+        <canvas id="gamecanvas" width="500" height="600">This browser not support WebGL</canvas>
+        <div class="center-div">
+            <button class="md-button" type="button" onclick="game_singlethon.create_new_game()" >New game</button> 
+            <button class="md-button" type="button" onclick="game_singlethon.repeat_cells()" >Add elements</button>
+        </div>
+    </div>
+    
+    <script src="js/main.js"></script>
+</body>
+</html>
