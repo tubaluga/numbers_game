@@ -14,8 +14,7 @@ function RenderEngine(canvas) {
 
     this.render_one_frame = function() {
 
-        context.fillStyle = this.background_color;
-        context.fillRect(0, 0, canvas.width, canvas.height);
+        context.clearRect(0, 0, canvas.width, canvas.height);
 
         this.renderer_object_list.forEach(function(render_object) {
             if (render_object.visible) {
