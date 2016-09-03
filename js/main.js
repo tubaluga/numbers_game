@@ -378,6 +378,10 @@ function Game(game_canvas) {
 
         game_canvas.height = bbox.height;
         game_canvas.width = bbox.width;
+
+        if (VK) {
+            VK.callMethod("resizeWindow", 800, bbox.height + 500);
+        }
     }
 
     this.render_one_frame = function() {
