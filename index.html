@@ -1,23 +1,55 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
-    <title>NumbersGame</title>
+    <title>Числа</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300|Poiret+One&subset=cyrillic" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/default.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet"> 
 </head>
+
 <body>
-    <div id="canvasdiv">
-        <div style="text-align: center;">
-            <h1>A simple numbers game</h1>
+    <div id="background">
+        <div class="header">
+            <h1>Простая игра в числа</h1>
         </div>
-        <canvas id="gamecanvas" width="500" height="600">This browser not support WebGL</canvas>
-        <div class="center-div">
-            <button class="md-button" type="button" onclick="game_singlethon.create_new_game()" >New game</button> 
-            <button class="md-button" type="button" onclick="game_singlethon.repeat_cells()" >Add elements</button>
+        <div class="content">
+            <div class="row">
+                <div class="col-md-3">
+                    <button href="#ruleCollapsed" class="button" data-toggle="collapse" aria-expanded="false" aria-controls="ruleCollapsed">
+                        Правила игры
+                    </button>
+                    <div class="collapse" id="ruleCollapsed">
+                        <div class="ruleblock">
+                            <p>
+                                Цель игры заключается в том, чтобы зачеркнуть все числа на игровом поле.
+                            </p>
+                            <p>
+                                Числа вычеркиваются парами. Можно вычеркивать любые одинаковые или дающие в сумме 10 числа в зависимости от их положения.
+                            </p>
+                            <p>Возможные положения чисел:</p>
+                            <ul>
+                                <li>стоящие рядом по горизонтали или вертикали</li>
+                                <li>последнее в строке с первым в следующей строке</li>
+                                <li>крайние числа всей таблицы (первое число в первой строке с последним числом в последней строке)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <canvas id="gamecanvas" width="500" height="0">This browser not support WebGL</canvas>
+                    <div class="center-div">
+                        <button id="button_new_game" class="button" type="button" onclick="game_singlethon.create_new_game()">Новая игра</button>
+                        <button id="button_repeat_cells" class="button" type="button" onclick="game_singlethon.repeat_cells()">Добавить элименты</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    
     <script src="js/main.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 </body>
+
 </html>

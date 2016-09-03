@@ -41,14 +41,14 @@ function TextRenderObject() {
     this.horizontal_align = "left";
     this.vertical_align = "center";
 	this.color = "#ffffff";
+    this.font = "22px Poiret One"
 
     this.render = function(context) {
 
 		context.fillStyle = this.color
 		context.textBaseline = this.vertical_align;
         context.textAlign = this.horizontal_align;
-        context.font = "22px HandMade";
-
+        context.font = this.font;
 
         context.fillText(this.text, this.position.x, this.position.y);
     }
@@ -212,7 +212,7 @@ function Game(game_canvas) {
     var self = this
 
     this.render_engine = new RenderEngine(game_canvas);
-	this.render_engine.background_color = "#ffffff"
+	this.render_engine.background_color = "#fcfcfc"
 
     var selected_pair = {
         first: null,
@@ -344,6 +344,7 @@ function Game(game_canvas) {
             game_grid.add_game_object(game_object);
         }
 
+        button_repeat_cells.style.display = "inline";
         game_singlethon.render_one_frame();
     }
 
@@ -375,20 +376,23 @@ function Game(game_canvas) {
 }
 
 var game_singlethon = null;
+var button_repeat_cells = document.getElementById("button_repeat_cells");
 
-function run() {
+function run() {    
+
+    button_repeat_cells.style.display = "none";
+
     var canvas = document.getElementById("gamecanvas");
     var context = canvas.getContext('2d');
 
     game_singlethon = new Game(canvas);
 
-    var f = new FontFace("HandMade", "url('fonts/OpenSans-CondLight.ttf')");
+    /*var f = new FontFace("HandMade", "url('fonts/OpenSans-CondLight.ttf')");
+
     f.load().then(function() {
 		document.fonts.add(f);
 		game_singlethon.render_one_frame();
-    });
-
-    game_singlethon.create_new_game();
+    });*/
 }
 
 run();
