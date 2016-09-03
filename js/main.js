@@ -244,6 +244,11 @@ function Game(game_canvas) {
                         selected_pair.first.set_strikeout(true);
                         object.set_strikeout(true);
                         selected_pair.first = null;
+
+                        if (check_game_over()) {
+                            self.finish_game();
+                        }
+
                     } else {
                         selected_pair.first.set_selected(false);
                         selected_pair.first = null;
@@ -328,6 +333,10 @@ function Game(game_canvas) {
 
         return false;
     }
+    
+    function check_game_over() {
+        return (get_possible_cells().length == 0);
+    } 
 
     this.create_new_game = function() {
 
@@ -340,12 +349,16 @@ function Game(game_canvas) {
         for (var i = 0; i < start_sequence.length; ++i) {
             var game_object = new CellGameObject(this.render_engine, start_sequence[i]);
             game_object_list.push(game_object);
-
+           
             game_grid.add_game_object(game_object);
         }
 
         button_repeat_cells.style.display = "inline";
         game_singlethon.render_one_frame();
+    }
+
+    this.finish_game = function() {
+        button_repeat_cells.style.display = "none";
     }
 
     this.repeat_cells = function() {
