@@ -265,6 +265,7 @@ function Game(game_canvas) {
 
     var game_object_list = [];
     var game_context = game_canvas.getContext('2d');
+    var resize_event_listeners = [];
 
     var game_grid = new GameGrid()
 
@@ -378,9 +379,9 @@ function Game(game_canvas) {
 
         game_canvas.height = bbox.height;
         game_canvas.width = bbox.width;
-
-        if (VK) {
-            VK.callMethod("resizeWindow", 800, bbox.height + 500);
+        
+        for (var i = 0; i < resize_event_listeners.length; ++i) {
+            resize_event_listeners[i](bbox.width, bbox.height);
         }
     }
 
@@ -389,6 +390,10 @@ function Game(game_canvas) {
         this.resize_canvas();
 
         this.render_engine.render_one_frame();
+    }
+
+    this.add_resize_listener = function(listner) {
+        resize_event_listeners.push(listner);
     }
 }
 
@@ -403,13 +408,6 @@ function run() {
     var context = canvas.getContext('2d');
 
     game_singlethon = new Game(canvas);
-
-    /*var f = new FontFace("HandMade", "url('fonts/OpenSans-CondLight.ttf')");
-
-    f.load().then(function() {
-		document.fonts.add(f);
-		game_singlethon.render_one_frame();
-    });*/
 }
 
 run();
